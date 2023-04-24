@@ -8,7 +8,15 @@ export const metadata = {
 
 export default async function BlogPage() {
   const response = await fetch(
-    'https://react.webworker.berlin/wp-json/wp/v2/posts'
+    'https://react.webworker.berlin/wp-json/wp/v2/posts', {
+
+
+    next: {
+      revalidate: 12000,
+
+    }
+
+  }
   );
 
   const posts = (await response.json()) as BlogPostRest[];
