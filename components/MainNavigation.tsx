@@ -27,7 +27,7 @@ const linkTargets = [
   },
   {
     text: 'Blog',
-    url: '/blog',
+    url: '/gql-blog',
   },
 ];
 

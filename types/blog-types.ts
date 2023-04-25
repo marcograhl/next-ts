@@ -14,6 +14,8 @@ export type BlogPostRest = {
   featured_media: number;
 };
 
+
+
 export type BlogImageRest = {
   id: number;
   guid: {
@@ -25,3 +27,29 @@ export type BlogImageRest = {
     height: number;
   };
 };
+
+export type BlogPostBaseGql = {
+  id: number;
+  date: string;
+  slug: string;
+  title: string;
+};
+
+export type BlogPostTeaserGql = BlogPostBaseGql & {
+  excerpt: string;
+};
+
+
+export type BlogPostGql = BlogPostBaseGql & {
+   content: string;
+    featuredImage: {
+      node: {
+      guid: string;
+        altText : string;
+        mediaDetails: {
+          height: number;
+          width: number;
+        }
+      }
+  }
+}

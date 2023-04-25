@@ -8,6 +8,7 @@ type Props = {
 };
 
 const WP_REST_BASE = process.env.WP_REST_BASE
+const WP_GRAPHQL_BASE = process.env.WP_GRAPHQL_BASE
 
 export default async function BlogPostPage({ params: { slug } }: Props) {
   const response = await fetch(

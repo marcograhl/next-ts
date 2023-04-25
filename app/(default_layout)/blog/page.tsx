@@ -6,16 +6,19 @@ export const metadata = {
   description: 'Die neuesten Meldungen',
 };
 
+const WP_REST_BASE = process.env.WP_REST_BASE
+const WP_GRAPHQL_BASE = process.env.WP_GRAPHQL_BASE
+
 export default async function BlogPage() {
   const response = await fetch(
     'https://react.webworker.berlin/wp-json/wp/v2/posts', {
-
-
+  	/* Anzahl an Sekunden, die die Antwort im Cache bleiben soll.
+  	Achtung: Die erste Anfrage nach dieser Zeit erhält noch den
+  	gespeicherten Wert, gleichzeit wird dann ein neuen Wert
+  	geladen, der beim folgenden Aufruf verwendet wird. */
     next: {
       revalidate: 12000,
-
     }
-
   }
   );
 
@@ -35,7 +38,7 @@ function BlogTeaser({ title, excerpt, date, slug }: BlogPostRest) {
   return (
     <article>
       <h2>
-        <Link href={`/blog/${slug}`}>{title.rendered}</Link>
+        <Link href={`/gql-blog/${slug}`}>{title.rendered}</Link>
       </h2>
       <time dateTime={new Date(date).toLocaleDateString()}>
         {new Date(date).toLocaleDateString('de')}
